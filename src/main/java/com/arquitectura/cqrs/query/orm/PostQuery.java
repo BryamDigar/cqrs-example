@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-
+@Entity
 @Data
 @AllArgsConstructor
 @Table(name = "post", schema = "cqrs")
@@ -22,4 +22,7 @@ public class PostQuery {
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CommentQuery> comments;
 
+    public PostQuery() {
+
+    }
 }
