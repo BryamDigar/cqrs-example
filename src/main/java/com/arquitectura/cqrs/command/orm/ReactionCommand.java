@@ -1,28 +1,25 @@
-package com.arquitectura.cqrs.query.orm;
+package com.arquitectura.cqrs.command.orm;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@AllArgsConstructor
+@Entity
 @Table(name = "comment_reaction", schema = "cqrs")
-public class ReactionQuery {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ReactionCommand {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_reaction_id_gen")
     @SequenceGenerator(name = "comment_reaction_id_gen", sequenceName = "comment_reaction_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Column(name = "emoji", nullable = false, length = Integer.MAX_VALUE)
+    @Column(name = "emoji", nullable = false)
     private String emoji;
 
     @Column(name = "comment_id", nullable = false)
-    @JsonIgnore
     private long commentId;
-
-    public ReactionQuery() {
-
-    }
 }
